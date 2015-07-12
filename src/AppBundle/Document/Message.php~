@@ -1,0 +1,31 @@
+<?php
+namespace AppBundle\Document;
+
+use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+
+/**
+ * @MongoDB\Document
+ */
+class Message
+{
+	 /**
+     * @MongoDB\Id
+     */
+	private $id;
+
+	/**
+     * @MongoDB\String
+     */
+	private $currencyFrom;
+
+	/**
+     * @MongoDB\String
+     */
+	private $currencyTo;
+
+	/**
+     * @MongoDB\Float
+     */
+	private $amount;
+
+}

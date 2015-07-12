@@ -20,8 +20,8 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "doctrine/mongodb-odm": "1.0.*@dev",
         "doctrine/mongodb-odm-bundle": "3.0.*@dev",
-        "friendsofsymfony/rest-bundle": "^1.7",
-        "jms/serializer-bundle": "^1.0"
+        "jms/serializer-bundle": "^1.0",
+        "jms/job-queue-bundle": "1.2.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",
