@@ -71,13 +71,15 @@ doctrine:
 doctrine_mongodb:
     connections:
         default:
-            server: mongodb://localhost:27017
+            #server: mongodb://localhost:27017
+            server: mongodb://djuro:lfp04i@c44.lamppost.12.mongolayer.com:10044/mtprocessor?replicaSet=set-55a42ab23185c299f7000ffd
             options: {}
     default_database: mtprocessor
     document_managers:
         default:
             mappings:
                 DMConsumerBundle: ~
+                DMAnalyticsBundle: ~
 
 # Swiftmailer Configuration
 swiftmailer:

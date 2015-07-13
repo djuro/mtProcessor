@@ -1,0 +1,27 @@
+<?php
+namespace DM\AnalyticsBundle\Document;
+
+use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+
+/**
+ * @MongoDB\Document
+ */
+class Analysis
+{
+	/**
+     * @MongoDB\Id
+     */
+	protected $id;
+
+	/**
+     * @MongoDB\Id
+     */
+	protected $date;
+
+	/**
+     * @MongoDB\String
+     */
+	protected $label;
+
+
+}

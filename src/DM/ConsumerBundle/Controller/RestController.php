@@ -13,16 +13,13 @@ class RestController extends Controller
 {
     /**
      * @Route("/new-message", name="new_message")
-     * 
+     * @Method("POST")
      */
     public function newAction(Request $request)
     {
     	$messageData = json_decode($request->getContent(), true);
     	
-
-		
 		$messageService = $this->get('message_service');
-
 
     	$messageService->handleMessage($messageData);
 
