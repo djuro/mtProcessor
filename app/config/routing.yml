@@ -1,4 +1,15 @@
-app:
-    resource: "@AppBundle/Controller/"
+dm_presentation:
+    resource: "@DMPresentationBundle/Controller/"
     type:     annotation
+    prefix:   /
+
+dm_analytics:
+    resource: "@DMAnalyticsBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+dm_consumer:
+    resource: "@DMConsumerBundle/Controller/"
+    type:     annotation
+    prefix:   /
 

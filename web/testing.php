@@ -25,27 +25,28 @@ echo "\n\n";
 
 */
 
-$amounts = range(10,20);
 
-$ch = curl_init('http://localhost/mtprocessor/web/app_dev.php/api/mongo/new');    
+$ch = curl_init('http://localhost/mtprocessor/web/app_dev.php/new-message');    
 
-foreach($amounts as $amount)
-{
-	$data = ['currencyFrom'=>'EUR','currencyTo'=>'GBP','amount'=>$amount];   
+//foreach($amounts as $amount)
+//{
+	$data = ['userId'=>134256,'currencyFrom'=>'EUR',
+	'currencyTo'=>'GBP','amountSell'=>1000,'amountBuy'=>747.10,
+	'rate'=>0.7471,'timePlaced'=>'24-JAN-15 10:27:44','originatingCountry'=>'FR'];  
+
 	$data_string = json_encode($data);  
 
 	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");                                                                     
-curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);                                                                  
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);                                                                      
-curl_setopt($ch, CURLOPT_HTTPHEADER, array(                                                                          
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);                                                                  
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);                                                                      
+	curl_setopt($ch, CURLOPT_HTTPHEADER, array(                                                                          
     'Content-Type: application/json',                                                                                
-    'Content-Length: ' . strlen($data_string))                                                                       
-);                    
+    'Content-Length: ' . strlen($data_string)) );                    
 
 $result = curl_exec($ch);
 
 echo $result;
-}
+
 
                                                                
                                                                                   

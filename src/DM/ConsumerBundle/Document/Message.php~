@@ -1,0 +1,57 @@
+<?php
+namespace DM\ConsumerBundle\Document;
+
+use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+
+/**
+ * @MongoDB\Document
+ */
+class Message
+{
+	/**
+     * @MongoDB\Id
+     */
+	protected $id;
+
+	/**
+     * @MongoDB\String
+     */
+	protected $userId;
+
+	/**
+     * @MongoDB\String
+     */
+	protected $currencyFrom;
+
+	/**
+     * @MongoDB\String
+     */
+	protected $currencyTo;
+
+	/**
+     * @MongoDB\Float
+     */
+	protected $amountSell;
+
+	/**
+     * @MongoDB\Float
+     */
+	protected $amountBuy;
+
+	/**
+     * @MongoDB\Float
+     */
+	protected $rate;
+
+	/**
+     * @MongoDB\String
+     */
+	protected $timePlaced;
+
+	/**
+     * @MongoDB\String
+     */
+	protected $originatingCountry;
+
+
+}

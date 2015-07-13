@@ -4,6 +4,10 @@ parameters:
 #    parameter_name: value
 
 services:
+    message_service:
+        class: DM\ConsumerBundle\Service\MessageService
+        arguments: ["@doctrine_mongodb"]
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+
