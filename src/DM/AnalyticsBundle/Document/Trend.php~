@@ -1,0 +1,30 @@
+<?php
+namespace DM\AnalyticsBundle\Document;
+
+use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+
+/**
+ * @MongoDB\EmbeddedDocument
+ */
+class Trend
+{
+	/**
+     * @MongoDB\Id
+     */
+	private $id;
+
+	/**
+     * @MongoDB\String
+     */
+	private $label;
+
+	/**
+     * @MongoDB\Timestamp
+     */
+	private $createdAt;
+
+	/**
+     * @MongoDB\String
+     */
+	private $result;
+}

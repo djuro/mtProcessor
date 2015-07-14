@@ -21,7 +21,9 @@
         "doctrine/mongodb-odm": "1.0.*@dev",
         "doctrine/mongodb-odm-bundle": "3.0.*@dev",
         "jms/serializer-bundle": "^1.0",
-        "jms/job-queue-bundle": "1.2.0"
+        "jms/job-queue-bundle": "1.2.0",
+        "friendsofsymfony/user-bundle": "~2.0@dev",
+        "phpunit/phpunit": "^4.7"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",

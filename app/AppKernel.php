@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new Cg\KintBundle\CgKintBundle(),
             //new FOS\RestBundle\FOSRestBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
             new DM\ConsumerBundle\DMConsumerBundle(),
             new DM\AnalyticsBundle\DMAnalyticsBundle(),
             new DM\PresentationBundle\DMPresentationBundle(),

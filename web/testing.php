@@ -30,9 +30,9 @@ $ch = curl_init('http://localhost/mtprocessor/web/app_dev.php/new-message');
 
 //foreach($amounts as $amount)
 //{
-	$data = ['userId'=>134256,'currencyFrom'=>'EUR',
-	'currencyTo'=>'GBP','amountSell'=>1000,'amountBuy'=>747.10,
-	'rate'=>0.7471,'timePlaced'=>'24-JAN-15 10:27:44','originatingCountry'=>'FR'];  
+	$data = ['userId'=>77564,'currencyFrom'=>'EUR',
+	'currencyTo'=>'GBP','amountSell'=>1200,'amountBuy'=>758.10,
+	'rate'=>0.7471,'timePlaced'=>'14-JUL-15 18:04:44','originatingCountry'=>'FR'];  
 
 	$data_string = json_encode($data);  
 
