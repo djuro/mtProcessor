@@ -1,7 +1,7 @@
 <?php
 namespace DM\AnalyticsBundle\Service\Trend;
 
-interface Analysis
+class Graph extends Result
 {
-	public function analyse();
+	
 }

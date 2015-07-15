@@ -5,6 +5,7 @@ use DM\ConsumerBundle\Document\Message;
 use Doctrine\Bundle\MongoDBBundle\ManagerRegistry;
 
 use \Exception;
+use \MongoDate;
 
 class MessageService
 {
@@ -33,7 +34,10 @@ class MessageService
 		$em->flush();
 	}
 
-
+	/**
+	* @param string[] $messageValues
+	* @return Message
+	*/
 	private function create($messageValues)
 	{
 		$message = new Message();
@@ -43,9 +47,25 @@ class MessageService
 			->setAmountSell($messageValues['amountSell'])
 			->setAmountBuy($messageValues['amountBuy'])
 			->setRate($messageValues['rate'])
-			->setTimePlaced($messageValues['timePlaced'])
 			->setOriginatingCountry($messageValues['originatingCountry']);
+
+			//->setTimePlaced($messageValues['timePlaced'])
+
+			$timePlaced = $this->stringToMongoDate($messageValues['timePlaced']);
+			$message->setTimePlaced($timePlaced);
 
 		return $message;
 	}
+
+
+	/**
+	* @param string $timePlaced
+	* @return MongoDate
+	*/
+	private function stringToMongoDate($timePlaced)
+	{
+		$mongoDateTime = new MongoDate(strtotime($timePlaced));
+		return $mongoDateTime;
+	}
+
 }

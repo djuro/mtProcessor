@@ -25,15 +25,41 @@ echo "\n\n";
 
 */
 
+$currency = ['EUR','GBP','USD'];
+$currency2 = ['GBP','EUR','USD'];
+
+$amount = [123,435,455,872,879,23.56,984.34,555.34,23.34,67,23,85,90];
+
+$all = [];
+
+$i=1;
+foreach($currency as $c)
+{
+	foreach($amount as $a)
+	{
+		foreach($currency2 as $c2)
+		{
+			$data = ['userId'=>77564,'currencyFrom'=>$c,
+						'currencyTo'=>$c2,'amountSell'=>$a,'amountBuy'=>rand(100,300),
+						'rate'=>0.7471,'timePlaced'=>'15-JUL-15 20:57:45','originatingCountry'=>'FR']; 
+			$all[$i] = $data;
+			$i++;
+		} 
+	}
+}
+
+
+
 
 $ch = curl_init('http://localhost/mtprocessor/web/app_dev.php/new-message');    
 
-//foreach($amounts as $amount)
-//{
+foreach($all as $data)
+{
+	/*
 	$data = ['userId'=>77564,'currencyFrom'=>'EUR',
 	'currencyTo'=>'GBP','amountSell'=>1200,'amountBuy'=>758.10,
 	'rate'=>0.7471,'timePlaced'=>'14-JUL-15 18:04:44','originatingCountry'=>'FR'];  
-
+*/
 	$data_string = json_encode($data);  
 
 	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");                                                                     
@@ -43,8 +69,9 @@ $ch = curl_init('http://localhost/mtprocessor/web/app_dev.php/new-message');
     'Content-Type: application/json',                                                                                
     'Content-Length: ' . strlen($data_string)) );                    
 
-$result = curl_exec($ch);
-
+	$result = curl_exec($ch);
+	echo $result;
+}
 echo $result;
 
 

@@ -4,9 +4,10 @@ namespace DM\ConsumerBundle\Document;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 
 use \InvalidArgumentException;
+use \MongoDate;
 
 /**
- * @MongoDB\Document
+ * @MongoDB\Document(repositoryClass="DM\ConsumerBundle\Repository\MessageRepository")
  */
 class Message
 {
@@ -46,7 +47,7 @@ class Message
 	protected $rate;
 
 	/**
-     * @MongoDB\String
+     * @MongoDB\Date
      */
 	protected $timePlaced;
 
@@ -204,10 +205,10 @@ class Message
     /**
      * Set timePlaced
      *
-     * @param string $timePlaced
+     * @param MongoDate $timePlaced
      * @return self
      */
-    public function setTimePlaced($timePlaced)
+    public function setTimePlaced(MongoDate $timePlaced)
     {
         $this->timePlaced = $timePlaced;
         return $this;
@@ -216,7 +217,7 @@ class Message
     /**
      * Get timePlaced
      *
-     * @return string $timePlaced
+     * @return MongoDate $timePlaced
      */
     public function getTimePlaced()
     {
