@@ -25,16 +25,6 @@ abstract class TrendResult
 	*/
 	protected $analysis;
 
-	/**
-	* @var DateTime
-	*/
-	protected $dateFrom;
-
-	/**
-	* @var DateTime
-	*/
-	protected $dateTo;
-
 
 	public function __construct(Analysis $analysis)
 	{
@@ -57,26 +47,7 @@ abstract class TrendResult
 		$this->result = $result;
 	}
 
-	public function setDateTo(DateTime $dateTo)
-	{
-		$this->dateTo = $dateTo;
-	}
 
-	public function setDateFrom(DateTime $dateFrom)
-	{
-		$this->dateFrom = $dateFrom;
-	}
-	
-	public function getDateTo()
-	{
-		return $this->dateTo;
-	}
-
-	public function getDateFrom()
-	{
-		return $this->dateFrom;
-	}
-
-	abstract protected function deliverResult();
+	abstract function deliverResult();
 
 }

@@ -5,7 +5,7 @@ use DM\ConsumerBundle\Document\Message;
 use Doctrine\Bundle\MongoDBBundle\ManagerRegistry;
 
 use \Exception;
-use \MongoDate;
+use \DateTime;
 
 class MessageService
 {
@@ -51,7 +51,8 @@ class MessageService
 
 			//->setTimePlaced($messageValues['timePlaced'])
 
-			$timePlaced = $this->stringToMongoDate($messageValues['timePlaced']);
+			$timePlaced = new DateTime($messageValues['timePlaced']);
+
 			$message->setTimePlaced($timePlaced);
 
 		return $message;

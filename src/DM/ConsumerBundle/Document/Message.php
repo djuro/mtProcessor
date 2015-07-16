@@ -47,7 +47,7 @@ class Message
 	protected $rate;
 
 	/**
-     * @MongoDB\Date
+     * @MongoDB\Field(type="date")
      */
 	protected $timePlaced;
 
@@ -205,10 +205,10 @@ class Message
     /**
      * Set timePlaced
      *
-     * @param MongoDate $timePlaced
+     * @param DateTime $timePlaced
      * @return self
      */
-    public function setTimePlaced(MongoDate $timePlaced)
+    public function setTimePlaced($timePlaced)
     {
         $this->timePlaced = $timePlaced;
         return $this;
@@ -217,7 +217,7 @@ class Message
     /**
      * Get timePlaced
      *
-     * @return MongoDate $timePlaced
+     * @return DateTime $timePlaced
      */
     public function getTimePlaced()
     {

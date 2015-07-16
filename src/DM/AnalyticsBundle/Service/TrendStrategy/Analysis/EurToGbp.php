@@ -2,15 +2,26 @@
 namespace DM\AnalyticsBundle\Service\TrendStrategy\Analysis;
 
 use Doctrine\ODM\MongoDB\DocumentRepository;
+use Doctrine\ODM\MongoDB\Cursor;
 
 use \DateTime;
 
-class EurToGbp implements Analysis
+class EurToGbp extends Analysis
 {
-	public function analyse(DocumentRepository $messageRepository, DateTime $dateFrom, DateTime $dateTo)
+	
+	public function __construct(DocumentRepository $documentRepository, DateTime $dateFrom, DateTime $dateTo)
 	{
-		$messages = $messageRepository->findBy(array('currencyFrom'=>'EUR','currencyTo'=>'GBP'));
+		parent::__construct($documentRepository, $dateFrom, $dateTo);
+	}
 
-		return $messages;
+	/**
+	* @return Doctrine\ODM\MongoDB\Cursor
+	*/
+	public function analyse()
+	{
+		$result = $this->documentRepository->findByCurrencyPair('EUR', 'GBP', $this->dateFrom, $this->dateTo);
+
+		if($result instanceof Cursor)
+			return $result;
 	}
 }

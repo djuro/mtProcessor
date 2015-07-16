@@ -25,4 +25,6 @@ class RestController extends Controller
 
         return new JsonResponse(['status'=>200,'result'=>'Message stored successfuly.']);
     }
+
+
 }

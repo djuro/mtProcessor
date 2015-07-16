@@ -3,6 +3,9 @@
 namespace DM\ConsumerBundle\Repository;
 
 use Doctrine\ODM\MongoDB\DocumentRepository;
+use Doctrine\ODM\MongoDB\Cursor;
+
+use \DateTime;
 
 /**
  * MessageRepository
@@ -12,11 +15,40 @@ use Doctrine\ODM\MongoDB\DocumentRepository;
  */
 class MessageRepository extends DocumentRepository
 {
-	
-   /* $qb = $this->createQueryBuilder('AcmeStoreBundle:Product')
-    ->field('name')->equals('foo')
-    ->limit(10)
-    ->sort('price', 'ASC')
-    ->getQuery()
-    ->execute()*/
+
+	/**
+	* @param string $currencyFrom
+	* @param string $currencyTo
+	* @param DateTime $dateFrom
+	* @param DateTime $dateTo
+	* @return Cursor
+	*/
+	public function findByCurrencyPair($currencyFrom, $currencyTo, DateTime $dateFrom, DateTime $dateTo)
+	{
+		 $qb = $this->createQueryBuilder('DMConsumerBundle:Message')
+        			->field('currencyFrom')->equals($currencyFrom)
+        			->field('currencyTo')->equals($currencyTo)
+        			->field('timePlaced')->gt($dateFrom)
+        			->field('timePlaced')->lte($dateTo);
+
+        $query = $qb->getQuery();
+		$result = $query->execute();
+		return $result;
+	}
+
+	/**
+	* @param DateTime $dateFrom
+	* @param DateTime $dateTo
+	* @return Cursor
+	*/
+	public function findPlacedBetween(DateTime $dateFrom, DateTime $dateTo)
+	{
+		$qb = $this->createQueryBuilder('DMConsumerBundle:Message')
+        			->field('timePlaced')->gt($dateFrom)
+        			->field('timePlaced')->lte($dateTo);
+
+        $query = $qb->getQuery();
+		$result = $query->execute();
+		return $result;
+	}
 }

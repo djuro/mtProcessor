@@ -39,7 +39,7 @@ class ReportController extends Controller
             $reportService = $this->get('report_service');
             $reportService->researchForTrend($report);
 
-            return $this->redirect($this->generateUrl('admin_reports'));
+            //return $this->redirect($this->generateUrl('admin_reports'));
         }
 
         return array('form'=>$form->createView());
@@ -55,11 +55,14 @@ class ReportController extends Controller
         $messageRepository = $this->get('doctrine_mongodb')->getManager()->getRepository('DMConsumerBundle:Message');
         //$messages = $messageRepository->findBy(array('currencyFrom'=>'EUR','currencyTo'=>'GBP'));
 
+$datum = new DateTime("2015-05-15 12:00:12");
+$datum2 = new DateTime("2015-10-02 12:45:00");
+
         $qb = $messageRepository->createQueryBuilder('DMConsumerBundle:Message')
         ->field('currencyFrom')->equals('EUR')
-        ->field('currencyTo')->equals('GBP');
-        //->getQuery()
-        //->execute();
+        ->field('currencyTo')->equals('GBP')
+        ->field('timePlaced')->gt($datum)
+        ->field('timePlaced')->lt($datum2);
 
         $query = $qb->getQuery();
         
@@ -67,16 +70,11 @@ $messages = $query->execute();
 
 foreach($messages as $message)
 {
-      d($message); 
+    d($message->getTimePlaced());
 }
 
 exit;
 
-        //$timePlaced = strtotime("24-JAN-15 10:27:44");
-$start = new MongoDate(strtotime("24-JAN-15 10:27:44"));
-
-dd($start);
-        //$dateTime = new DateTime($timePlaced);
-        //dd($dateTime);
+        
     }
 }

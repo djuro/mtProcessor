@@ -26,25 +26,32 @@ echo "\n\n";
 */
 
 $currency = ['EUR','GBP','USD'];
-$currency2 = ['GBP','EUR','USD'];
+$currency2 = ['USD'];
 
 $amount = [123,435,455,872,879,23.56,984.34,555.34,23.34,67,23,85,90];
 
 $all = [];
 
+$dates = ['25-AUG-15 19:48:22','12-NOV-15 13:04:05'];
+
 $i=1;
-foreach($currency as $c)
+foreach($dates as $date)
 {
-	foreach($amount as $a)
+	foreach($currency as $c)
 	{
-		foreach($currency2 as $c2)
+		foreach($amount as $a)
 		{
-			$data = ['userId'=>77564,'currencyFrom'=>$c,
-						'currencyTo'=>$c2,'amountSell'=>$a,'amountBuy'=>rand(100,300),
-						'rate'=>0.7471,'timePlaced'=>'15-JUL-15 20:57:45','originatingCountry'=>'FR']; 
-			$all[$i] = $data;
-			$i++;
-		} 
+			foreach($currency2 as $c2)
+			{
+				if($c==$c2)
+					break;
+				$data = ['userId'=>77564,'currencyFrom'=>$c,
+							'currencyTo'=>$c2,'amountSell'=>$a,'amountBuy'=>rand(100,300),
+							'rate'=>0.7471,'timePlaced'=>$date,'originatingCountry'=>'FR']; 
+				$all[$i] = $data;
+				$i++;
+			} 
+		}
 	}
 }
 

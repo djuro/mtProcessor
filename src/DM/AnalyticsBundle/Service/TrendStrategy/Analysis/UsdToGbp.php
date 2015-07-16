@@ -6,7 +6,7 @@ use Doctrine\ODM\MongoDB\Cursor;
 
 use \DateTime;
 
-class TotalSell extends Analysis
+class UsdToGbp extends Analysis
 {
 	
 	public function __construct(DocumentRepository $documentRepository, DateTime $dateFrom, DateTime $dateTo)
@@ -15,20 +15,13 @@ class TotalSell extends Analysis
 	}
 
 	/**
-	* @return float[]
+	* @return Doctrine\ODM\MongoDB\Cursor
 	*/
 	public function analyse()
 	{
-		$result = $this->documentRepository->findPlacedBetween($this->dateFrom, $this->dateTo);
+		$result = $this->documentRepository->findByCurrencyPair('USD', 'EUR', $this->dateFrom, $this->dateTo);
 
-		$amountsSell = [];
 		if($result instanceof Cursor)
-		{
-			foreach($result as $document)
-			{
-				$amountsSell[] = $document->getAmountSell();
-			}
-		}
-		return $amountsSell;
+			return $result;
 	}
 }
