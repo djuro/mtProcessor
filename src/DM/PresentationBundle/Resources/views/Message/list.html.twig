@@ -1,0 +1,20 @@
+{% extends 'DMPresentationBundle::layout.html.twig' %}
+
+{% block body %}
+{{ parent() }}
+	<div class="container">
+		<table class="table table-striped">
+		<tr> 
+			<th>User ID</th> <th>Cur. From</th> <th>Cur. To</th> <th>Amount Sell</th> 
+			<th>Amount Buy</th> <th>Rate</th> <th>Time Placed</th> <th>Originating Country</th> 
+		</tr>
+		{% for message in messages %}
+		<tr> 
+			<td>{{ message.userId}}</td> <td>{{ message.currencyFrom }}</td> <td>{{ message.currencyTo }}</td> 
+			<td>{{ message.amountSell }}</td> <td>{{ message.amountBuy }}</td> <td>{{ message.rate }}</td> 
+			<td>{{ message.timePlaced|date() }}</td> <td>{{ message.originatingCountry }}</td>
+		</tr>
+		{% endfor %}
+		</table>
+	</div>
+{% endblock body %}
