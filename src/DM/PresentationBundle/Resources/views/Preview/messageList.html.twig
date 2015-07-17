@@ -3,6 +3,9 @@
 {% block body %}
 {{ parent() }}
 	<div class="container">
+
+	{{ pagerfanta(messages, 'twitter_bootstrap3_translated', options|default({})) }}
+	
 		<table class="table table-striped">
 		<tr> 
 			<th>User ID</th> <th>Cur. From</th> <th>Cur. To</th> <th>Amount Sell</th> 
@@ -16,5 +19,6 @@
 		</tr>
 		{% endfor %}
 		</table>
+	{{ pagerfanta(messages, 'twitter_bootstrap3_translated', options|default({})) }}
 	</div>
 {% endblock body %}

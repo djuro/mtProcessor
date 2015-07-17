@@ -1,1 +1,33 @@
-{{ form(form) }}
+{% extends 'DMPresentationBundle::layout.html.twig' %}
+
+{% block body %}
+
+<div class="container">
+<h3>Create report</h3>
+{{ form_start(form) }}
+<div class="form-group">
+	<div class="form-inline">
+		{{ form_label(form.dateFrom)}}<br />
+	   	{{ form_widget(form.dateFrom.day,{'attr':{'class':'form-control'}})}}
+	   	{{ form_widget(form.dateFrom.month,{'attr':{'class':'form-control'}})}}
+	   	{{ form_widget(form.dateFrom.year,{'attr':{'class':'form-control'}})}}
+	</div>
+</div>
+<div class="form-group">
+	<div class="form-inline">
+		{{ form_label(form.dateTo)}}<br />
+	   	{{ form_widget(form.dateTo.day,{'attr':{'class':'form-control'}})}}
+	   	{{ form_widget(form.dateTo.month,{'attr':{'class':'form-control'}})}}
+	   	{{ form_widget(form.dateTo.year,{'attr':{'class':'form-control'}})}}
+	</div>
+  </div>
+  <div class="form-group">
+  	<div class="form-inline">
+    	{{ form_label(form.trend)}}<br />
+	   	{{ form_widget(form.trend,{'attr':{'class':'form-control'}})}}
+	</div>
+  </div>
+<button type="submit" class="btn btn-primary">Save</button>
+{{ form_widget(form._token) }}
+</div>
+{% endblock body %}

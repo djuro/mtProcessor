@@ -51,4 +51,5 @@ class MessageRepository extends DocumentRepository
 		$result = $query->execute();
 		return $result;
 	}
+
 }

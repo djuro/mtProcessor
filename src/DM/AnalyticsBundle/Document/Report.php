@@ -14,7 +14,7 @@ class Report
 	private $id;
 
     /**
-     * @MongoDB\Timestamp
+     * @MongoDB\Date
      */
     private $createdAt;
     

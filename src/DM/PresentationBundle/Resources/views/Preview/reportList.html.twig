@@ -1,0 +1,22 @@
+{% extends 'DMPresentationBundle::layout.html.twig' %}
+
+{% block body %}
+{{ parent() }}
+	<div class="container">
+
+	{{ pagerfanta(reports, 'twitter_bootstrap3_translated', options|default({})) }}
+	
+		<table class="table table-striped">
+		<tr> 
+			<th>Created At</th> <th>Date From</th> <th>Date To</th> <th>Trend label</th> <th>Result</th>
+		</tr>
+		{% for report in reports %}
+		<tr> 
+			<td>{{ report.createdAt|date() }}</td> <td>{{ report.dateFrom|date() }}</td> <td>{{ report.dateTo|date() }}</td> 
+			<td>{{ trendLabels[report.trend.label|default('')] }}</td> <td>{{report.trend.result|default('')}}</td>
+		</tr>
+		{% endfor %}
+		</table>
+	{{ pagerfanta(reports, 'twitter_bootstrap3_translated', options|default({})) }}
+	</div>
+{% endblock body %}
