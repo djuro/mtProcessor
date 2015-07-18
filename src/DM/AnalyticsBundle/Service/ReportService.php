@@ -63,14 +63,13 @@ class ReportService
 		$trendLabels = TrendEnumerator::trends();
 
 		$view->trendLabel = $trendLabels[$report->getTrend()->getLabel()];
-		
+
 		$trendResult = $report->getTrend()->getResult();
 
 		foreach($trendResult as $result)
 		{
 			$view->results[] = $result;
 		}
-//dd($view);
 		return $view;
 	}
 }

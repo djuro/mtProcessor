@@ -39,9 +39,6 @@ class Graph extends TrendResult
 	{
 		$result = $this->analysis->analyse();
 
-
-		//$this->findDays();
-
 		$daysCount = $this->dateFrom->diff($this->dateTo)->format("%a");
 
 		$messages = $this->formatMessages($result);
@@ -50,6 +47,7 @@ class Graph extends TrendResult
 		{
 			/* @var DateTime[] */
 			$xMarks = $this->findMonths();
+			$resultCollection = $this->mapMessageCountToMonthTimeLine($messages,$xMarks);
 		}
 		else
 		{
@@ -58,12 +56,12 @@ class Graph extends TrendResult
 		}
 
 		return $resultCollection;
-		//dd($xMarks);
 	}
 
 	/**
 	* @param TimePlaced[] $messages
 	* @param DateTime[] $timeLine
+	* @return Result[]
 	*/
 	private function mapMessageCountToDayTimeLine($messages, $timeLine)
 	{
@@ -94,11 +92,43 @@ class Graph extends TrendResult
 		return $resultCollection;
 	}
 
-	private function mapMessageCountToMonthTimeLine()
+	/**
+	* @param TimePlaced[] $messages
+	* @param DateTime[] $timeLine
+	* @return Result[]
+	*/
+	private function mapMessageCountToMonthTimeLine($messages, $timeLine)
 	{
+		/*$resultCollection = [];
 
+		foreach($timeLine as $day)
+		{
+			$result = new Result();
+			$result->setLabel($day->format("d.m.Y."));
+
+			foreach($messages as $iDtimePlaced)
+			{
+				$timePlaced = $iDtimePlaced->time;
+
+				if(!$timePlaced instanceof DateTime)
+					throw new Exception(sprintf("TimePlaced property for Message, ID: %s is not valid", $iDtimePlaced->messageId));
+
+				$timePlacedString = $timePlaced->format('Y-m-d');
+				$comparingDate = new DateTime($timePlacedString);
+
+				if($comparingDate == $day)
+				{
+					$result->incrementValue();
+				}
+			}
+			$resultCollection[] = $result;
+		}
+		return $resul*/tCollection;
 	}
 
+	/**
+	* @return DateTime[]
+	*/
 	private function findMonths()
 	{
 		$xMarks = [];
@@ -110,12 +140,15 @@ class Graph extends TrendResult
 
 		foreach ($period as $dt) {
 		    //echo $dt->format("m-'y.") . "<br>\n";
-		    $xMarks[] = $dt->format("m-Y.");
+		    $xMarks[] = $dt;//->format("m-Y.");
 		}
 
 		return $xMarks;
 	}
 
+	/**
+	* @return DateTime[]
+	*/
 	private function findDays()
 	{
 		$xMarks = [];
