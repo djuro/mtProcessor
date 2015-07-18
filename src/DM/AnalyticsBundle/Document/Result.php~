@@ -1,0 +1,27 @@
+<?php
+namespace DM\AnalyticsBundle\Document;
+
+use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+
+use \InvalidParameterException;
+
+/**
+ * @MongoDB\EmbeddedDocument
+ */
+class Result
+{
+	/**
+     * @MongoDB\Id
+     */
+	private $id;
+
+	/**
+     * @MongoDB\String
+     */
+	private $label;
+
+    /**
+     * @MongoDB\Integer
+     */
+	private $value;
+}

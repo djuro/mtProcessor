@@ -63,11 +63,6 @@ class PreviewController extends Controller
         $pagerfanta->setMaxPerPage(50);
         $pagerfanta->setCurrentPage($page);
 
-foreach($pagerfanta as $p)
-{
-    d($p);
-}
-exit;
         return array(
             'reports' => $pagerfanta,
             'trendLabels' => TrendEnumerator::trends()
@@ -75,13 +70,33 @@ exit;
     }
 
     /**
+     * @Route("/admin/report/view", name="admin_report_view")
+     * @Template()
+     */
+    public function viewReportAction(Request $request)
+    {
+        $reportRepository = $this->get('doctrine_mongodb')->getManager()->getRepository('DMAnalyticsBundle:Report');
+        $reportService = $this->get('report_service');
+
+        $report = $reportRepository->find($request->query->get('id'));
+
+        if(!$report)
+            throw new Exception(sprintf("No Report found having ID: %s",$request->query->get('id')));
+
+        $reportView = $reportService->createView($report);
+        
+
+        return array('reportView' => $reportView);
+    }
+
+
+    /**
      * @Route("/")
      * @Template()
      */
     public function homeAction()
     {
-echo 7563845414437172634;
-exit;
+        return $this->redirect($this->generateUrl('admin_message_list'));
     }
     
 }

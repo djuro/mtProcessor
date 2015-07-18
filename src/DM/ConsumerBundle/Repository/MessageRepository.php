@@ -29,7 +29,8 @@ class MessageRepository extends DocumentRepository
         			->field('currencyFrom')->equals($currencyFrom)
         			->field('currencyTo')->equals($currencyTo)
         			->field('timePlaced')->gt($dateFrom)
-        			->field('timePlaced')->lte($dateTo);
+        			->field('timePlaced')->lte($dateTo)
+        			->sort('timePlaced','asc');
 
         $query = $qb->getQuery();
 		$result = $query->execute();

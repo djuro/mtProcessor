@@ -26,7 +26,7 @@ class Trend
 	private $createdAt;
 
 	/**
-     * @MongoDB\String
+     * @MongoDB\EmbedMany(targetDocument="Result")
      */
 	private $result;
 
@@ -100,5 +100,37 @@ class Trend
     public function getResult()
     {
         return $this->result;
+    }
+
+    /**
+     * Set label
+     *
+     * @param string $label
+     * @return self
+     */
+    public function setLabel($label)
+    {
+        $this->label = $label;
+        return $this;
+    }
+
+    /**
+     * Add result
+     *
+     * @param DM\AnalyticsBundle\Document\Result $result
+     */
+    public function addResult(\DM\AnalyticsBundle\Document\Result $result)
+    {
+        $this->result[] = $result;
+    }
+
+    /**
+     * Remove result
+     *
+     * @param DM\AnalyticsBundle\Document\Result $result
+     */
+    public function removeResult(\DM\AnalyticsBundle\Document\Result $result)
+    {
+        $this->result->removeElement($result);
     }
 }

@@ -11,6 +11,7 @@ class TrendEnumerator
 								"CURRENCY_PAIR_USD_EUR" => "Currency pair USD/EUR",
 								"TOTAL_AMOUNT_SELL" => "Total amount sell",
 								"TOTAL_AMOUNT_BUY" => "Total amount buy",
+								"CURRENCY_PAIR_GRAPH_EUR_GBP" => "Graph EUR/GBP"
 							];
 	
 

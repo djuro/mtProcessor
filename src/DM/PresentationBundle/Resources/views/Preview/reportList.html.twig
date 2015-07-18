@@ -12,8 +12,16 @@
 		</tr>
 		{% for report in reports %}
 		<tr> 
-			<td>{{ report.createdAt|date() }}</td> <td>{{ report.dateFrom|date() }}</td> <td>{{ report.dateTo|date() }}</td> 
-			<td>{{ trendLabels[report.trend.label|default('')] }}</td> <td>{{report.trend.result|default('')}}</td>
+			<td>{{ report.createdAt|date() }}</td>
+			<td>{{ report.dateFrom|date() }}</td>
+			<td>{{ report.dateTo|date() }}</td> 
+			<td>{{ trendLabels[report.trend.label|default('')] }}</td>
+			{% if report.trend.result|length > 1 %}
+				<td><a href="{{ path('admin_report_view',{'id':report.id}) }}"><span class="glyphicon glyphicon-signal" aria-hidden="true"></span></a></td>
+			{% else %}
+				{% set singleResult = report.trend.result|first %}
+				<td>{{ singleResult.value }}</td>
+			{% endif %}
 		</tr>
 		{% endfor %}
 		</table>

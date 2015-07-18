@@ -12,6 +12,7 @@ use DM\AnalyticsBundle\Service\TrendStrategy\Analysis\TotalBuy;
 use DM\AnalyticsBundle\Document\Report;
 use DM\AnalyticsBundle\Service\TrendStrategy\Count;
 use DM\AnalyticsBundle\Service\TrendStrategy\Sum;
+use DM\AnalyticsBundle\Service\TrendStrategy\Graph;
 
 use Doctrine\ODM\MongoDB\DocumentRepository;
 
@@ -42,6 +43,8 @@ class TrendResultFactory
 			case 'TOTAL_AMOUNT_SELL':
 			case 'TOTAL_AMOUNT_BUY':
 				return new Sum($analysis);
+			case 'CURRENCY_PAIR_GRAPH_EUR_GBP':
+				return new Graph($analysis, $report->getDateFrom(), $report->getDateTo());
 			default:
 				throw new Exception(sprintf("Given Trend result type %s not supported.",$trendLabel));
 		}
@@ -57,6 +60,7 @@ class TrendResultFactory
 		switch($trendLabel)
 		{
 			case 'CURRENCY_PAIR_EUR_GBP':
+			case 'CURRENCY_PAIR_GRAPH_EUR_GBP':
 				return new EurToGbp($documentRepository, $dateFrom, $dateTo);
 			case 'CURRENCY_PAIR_EUR_USD':
 				return new EurToUsd($documentRepository, $dateFrom, $dateTo);

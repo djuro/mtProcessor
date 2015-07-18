@@ -10,7 +10,7 @@ use \DateTimeZone;
 
 /**
 * Class ReportRepository
-* Serves to transform entity (domain) class to form underlying class, and vice versa.
+* It's task is to transform entity (domain) class to ReportType form underlying class, and vice versa.
 */
 class ReportRepository
 {
