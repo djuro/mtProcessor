@@ -8,3 +8,6 @@ or by clicking an icon to preview a graph report.
 
 Available trends implementation is basic and just for example. 
 It is easy scalable because it involves Strategy pattern solution.
+
+Usrnm: currencyfair
+Passwd: currencyfair
