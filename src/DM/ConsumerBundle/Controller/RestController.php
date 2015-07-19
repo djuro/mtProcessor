@@ -23,7 +23,7 @@ class RestController extends Controller
 
     	$messageService->handleMessage($messageData);
 
-        return new JsonResponse(['status'=>200,'result'=>'Message stored successfuly.']);
+        return new JsonResponse(['status'=>200,'message'=>'Message stored successfuly.']);
     }
 
 

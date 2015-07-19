@@ -45,7 +45,7 @@ class Graph extends TrendResult
 
 		if($daysCount > 30)
 		{
-			/* @var DateTime[] */
+			/* @var DateTime[] Used for generating labels on x axis */
 			$xMarks = $this->findMonths();
 			$resultCollection = $this->mapMessageCountToMonthTimeLine($messages,$xMarks);
 		}
@@ -66,22 +66,18 @@ class Graph extends TrendResult
 	private function mapMessageCountToDayTimeLine($messages, $timeLine)
 	{
 		$resultCollection = [];
-
 		foreach($timeLine as $day)
 		{
 			$result = new Result();
 			$result->setLabel($day->format("d.m.Y."));
-
 			foreach($messages as $iDtimePlaced)
 			{
 				$timePlaced = $iDtimePlaced->time;
-
 				if(!$timePlaced instanceof DateTime)
-					throw new Exception(sprintf("TimePlaced property for Message, ID: %s is not valid", $iDtimePlaced->messageId));
+					throw new Exception(sprintf("TimePlaced DTO property for Message ID: %s is not valid", $iDtimePlaced->messageId));
 
 				$timePlacedString = $timePlaced->format('Y-m-d');
 				$comparingDate = new DateTime($timePlacedString);
-
 				if($comparingDate == $day)
 				{
 					$result->incrementValue();
@@ -99,31 +95,29 @@ class Graph extends TrendResult
 	*/
 	private function mapMessageCountToMonthTimeLine($messages, $timeLine)
 	{
-		/*$resultCollection = [];
-
-		foreach($timeLine as $day)
+		$resultCollection = [];
+		foreach($timeLine as $month)
 		{
 			$result = new Result();
-			$result->setLabel($day->format("d.m.Y."));
-
+			$result->setLabel($month->format("M.Y."));
 			foreach($messages as $iDtimePlaced)
 			{
 				$timePlaced = $iDtimePlaced->time;
 
 				if(!$timePlaced instanceof DateTime)
-					throw new Exception(sprintf("TimePlaced property for Message, ID: %s is not valid", $iDtimePlaced->messageId));
+					throw new Exception(sprintf("TimePlaced DTO property for Message ID: %s is not valid", $iDtimePlaced->messageId));
 
-				$timePlacedString = $timePlaced->format('Y-m-d');
-				$comparingDate = new DateTime($timePlacedString);
-
-				if($comparingDate == $day)
+				$timePlacedString = $timePlaced->format('Y-m');
+				$timePlacedMonth = new DateTime($timePlacedString);
+				$comparingMonth = new DateTime($timePlacedString);
+				if($timePlacedMonth == $month)
 				{
 					$result->incrementValue();
 				}
 			}
 			$resultCollection[] = $result;
 		}
-		return $resul*/tCollection;
+		return $resultCollection;
 	}
 
 	/**
@@ -138,9 +132,9 @@ class Graph extends TrendResult
 		$interval = DateInterval::createFromDateString('1 month');
 		$period   = new DatePeriod($start, $interval, $end);
 
-		foreach ($period as $dt) {
-		    //echo $dt->format("m-'y.") . "<br>\n";
-		    $xMarks[] = $dt;//->format("m-Y.");
+		foreach ($period as $dt)
+		{
+		    $xMarks[] = $dt;
 		}
 
 		return $xMarks;
@@ -158,9 +152,9 @@ class Graph extends TrendResult
 		$interval = DateInterval::createFromDateString('1 day');
 		$period   = new DatePeriod($start, $interval, $end);
 
-		foreach ($period as $dt) {
-		    //echo $dt->format("d.-m-'y.") . "<br>\n";
-		    $xMarks[] = $dt;//->format("d.-m-'y.");
+		foreach ($period as $dt) 
+		{
+		    $xMarks[] = $dt;
 		}
 		return $xMarks;
 	}

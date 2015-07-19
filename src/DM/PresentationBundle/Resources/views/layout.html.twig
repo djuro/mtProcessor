@@ -16,6 +16,7 @@
           <ul class="nav navbar-nav">
             <li class="{% if app.request.attributes.get('_route') == 'admin_message_list' %}active{% endif %}"><a href="{{ path('admin_message_list') }}">Messages</a></li>
             <li class="{% if app.request.attributes.get('_route') == 'admin_report_list' %}active{% endif %}"><a href="{{ path('admin_report_list') }}">Reports</a></li>
+            <li class="{% if app.request.attributes.get('_route') == 'admin_report_new' %}active{% endif %}"><a href="{{ path('admin_report_new') }}">New report</a></li>
             <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
           </ul>
         </div><!--/.nav-collapse -->
