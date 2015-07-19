@@ -49,8 +49,6 @@ class MessageService
 			->setRate($messageValues['rate'])
 			->setOriginatingCountry($messageValues['originatingCountry']);
 
-			//->setTimePlaced($messageValues['timePlaced'])
-
 			$timePlaced = new DateTime($messageValues['timePlaced']);
 
 			$message->setTimePlaced($timePlaced);
