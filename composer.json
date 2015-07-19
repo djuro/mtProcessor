@@ -23,13 +23,11 @@
         "jms/serializer-bundle": "^1.0",
         "jms/job-queue-bundle": "1.2.0",
         "friendsofsymfony/user-bundle": "~2.0@dev",
-        "phpunit/phpunit": "^4.7",
         "pagerfanta/pagerfanta": "^1.0",
         "white-october/pagerfanta-bundle": "^1.0"
     },
     "require-dev": {
-        "sensio/generator-bundle": "~2.3",
-         "cg/kint-bundle": "dev-master"
+        "sensio/generator-bundle": "~2.3"
     },
     "scripts": {
         "post-root-package-install": [
