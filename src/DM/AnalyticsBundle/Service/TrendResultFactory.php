@@ -7,8 +7,8 @@ use DM\AnalyticsBundle\Service\TrendStrategy\Analysis\EurToUsd;
 use DM\AnalyticsBundle\Service\TrendStrategy\Analysis\GbpToEur;
 use DM\AnalyticsBundle\Service\TrendStrategy\Analysis\UsdToGbp;
 use DM\AnalyticsBundle\Service\TrendStrategy\Analysis\UsdToEur;
-use DM\AnalyticsBundle\Service\TrendStrategy\Analysis\TotalSell;
-use DM\AnalyticsBundle\Service\TrendStrategy\Analysis\TotalBuy;
+use DM\AnalyticsBundle\Service\TrendStrategy\Analysis\TotalBuyGbp;
+use DM\AnalyticsBundle\Service\TrendStrategy\Analysis\TotalBuyEur;
 use DM\AnalyticsBundle\Document\Report;
 use DM\AnalyticsBundle\Service\TrendStrategy\Count;
 use DM\AnalyticsBundle\Service\TrendStrategy\Sum;
@@ -40,10 +40,13 @@ class TrendResultFactory
 			case 'CURRENCY_PAIR_USD_GBP':
 			case 'CURRENCY_PAIR_USD_EUR':
 				return new Count($analysis);
-			case 'TOTAL_AMOUNT_SELL':
-			case 'TOTAL_AMOUNT_BUY':
+			case 'TOTAL_BUY_EUR':
+			case 'TOTAL_BUY_GBP':
 				return new Sum($analysis);
 			case 'CURRENCY_PAIR_GRAPH_EUR_GBP':
+			case 'CURRENCY_PAIR_GRAPH_GBP_EUR':
+			case 'CURRENCY_PAIR_GRAPH_EUR_USD':
+			case 'CURRENCY_PAIR_GRAPH_USD_EUR':
 				return new Graph($analysis, $report->getDateFrom(), $report->getDateTo());
 			default:
 				throw new Exception(sprintf("Given Trend result type %s not supported.",$trendLabel));
@@ -63,19 +66,22 @@ class TrendResultFactory
 			case 'CURRENCY_PAIR_GRAPH_EUR_GBP':
 				return new EurToGbp($documentRepository, $dateFrom, $dateTo);
 			case 'CURRENCY_PAIR_EUR_USD':
+			case 'CURRENCY_PAIR_GRAPH_EUR_USD':
 				return new EurToUsd($documentRepository, $dateFrom, $dateTo);
 			case 'CURRENCY_PAIR_GBP_EUR':
+			case 'CURRENCY_PAIR_GRAPH_GBP_EUR':
 				return new GbpToEur($documentRepository, $dateFrom, $dateTo);
 			case 'CURRENCY_PAIR_USD_GBP':
 				return new UsdToGbp($documentRepository, $dateFrom, $dateTo);
 			case 'CURRENCY_PAIR_USD_EUR':
+			case 'CURRENCY_PAIR_GRAPH_USD_EUR':
 				return new UsdToEur($documentRepository, $dateFrom, $dateTo);
-			case 'TOTAL_AMOUNT_SELL':
-				return new TotalSell($documentRepository, $dateFrom, $dateTo);
-			case 'TOTAL_AMOUNT_BUY':
-				return new TotalBuy($documentRepository, $dateFrom, $dateTo);
+			case 'TOTAL_BUY_EUR':
+				return new TotalBuyEur($documentRepository, $dateFrom, $dateTo);
+			case 'TOTAL_BUY_GBP':
+				return new TotalBuyGbp($documentRepository, $dateFrom, $dateTo);
 			default:
-				throw new Exception(sprintf("Given Trend analysis %s not supported.",$trendLabel));
+				throw new Exception(sprintf("Given Trend analysis: %s not supported.",$trendLabel));
 		}
 	}
 }

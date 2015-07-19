@@ -1,4 +1,5 @@
 {% extends 'DMPresentationBundle::layout.html.twig' %}
+{% import _self as macros %}
 
 {% block body %}
 {{ parent() }}
@@ -16,15 +17,22 @@
 			<td>{{ report.dateFrom|date() }}</td>
 			<td>{{ report.dateTo|date() }}</td> 
 			<td>{{ trendLabels[report.trend.label|default('')] }}</td>
-			{% if report.trend.result|length > 1 %}
-				<td><a href="{{ path('admin_report_view',{'id':report.id}) }}"><span class="glyphicon glyphicon-signal" aria-hidden="true"></span></a></td>
-			{% else %}
-				{% set singleResult = report.trend.result|first %}
-				<td>{{ singleResult.value }}</td>
-			{% endif %}
+			<td>{{ macros.displayResult(report.trend.result,report) }}</td>
 		</tr>
 		{% endfor %}
 		</table>
 	{{ pagerfanta(reports, 'twitter_bootstrap3_translated', options|default({})) }}
 	</div>
 {% endblock body %}
+
+
+{% macro displayResult(resultCollection, report) %}
+    {% set singleResult = resultCollection|first %}
+    {% if singleResult.type == 'amount' %}
+    	{{ singleResult.value|number_format(2,'.',',') }}
+    {% elseif singleResult.type == 'count' %}
+    	{{ singleResult.value }}
+    {% elseif (resultCollection|length > 1) and (singleResult.type is null) %}
+    	<a href="{{ path('admin_report_view',{'id':report.id}) }}"><span class="glyphicon glyphicon-signal" aria-hidden="true"></span></a>
+    {% endif %}
+{% endmacro %}

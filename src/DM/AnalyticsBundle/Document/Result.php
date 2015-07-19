@@ -18,7 +18,12 @@ class Result
 	/**
      * @MongoDB\String
      */
-	private $label;
+	private $type;
+    
+    /**
+     * @MongoDB\String
+     */
+    private $label;
 
     /**
      * @MongoDB\Integer
@@ -35,27 +40,7 @@ class Result
         return $this->id;
     }
 
-    /**
-     * Set label
-     *
-     * @param string $label
-     * @return self
-     */
-    public function setLabel($label)
-    {
-        $this->label = $label;
-        return $this;
-    }
-
-    /**
-     * Get label
-     *
-     * @return string $label
-     */
-    public function getLabel()
-    {
-        return $this->label;
-    }
+   
 
     /**
      * Set value
@@ -83,5 +68,49 @@ class Result
     {
         $this->value += 1;
         return $this;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     * @return self
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string $type
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set label
+     *
+     * @param string $label
+     * @return self
+     */
+    public function setLabel($label)
+    {
+        $this->label = $label;
+        return $this;
+    }
+
+    /**
+     * Get label
+     *
+     * @return string $label
+     */
+    public function getLabel()
+    {
+        return $this->label;
     }
 }

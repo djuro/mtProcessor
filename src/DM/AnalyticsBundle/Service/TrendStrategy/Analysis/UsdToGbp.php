@@ -19,7 +19,7 @@ class UsdToGbp extends Analysis
 	*/
 	public function analyse()
 	{
-		$result = $this->documentRepository->findByCurrencyPair('USD', 'EUR', $this->dateFrom, $this->dateTo);
+		$result = $this->documentRepository->findByCurrencyPair('USD', 'GBP', $this->dateFrom, $this->dateTo);
 
 		if($result instanceof Cursor)
 			return $result;

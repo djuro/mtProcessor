@@ -21,6 +21,7 @@ class EurToUsd extends Analysis
 	{
 		$result = $this->documentRepository->findByCurrencyPair('EUR', 'USD', $this->dateFrom, $this->dateTo);
 
-		
+		if($result instanceof Cursor)
+			return $result;
 	}
 }

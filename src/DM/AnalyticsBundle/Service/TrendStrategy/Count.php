@@ -14,6 +14,7 @@ class Count extends TrendResult
 		$result = $this->analysis->analyse();
 
 		$singleResult = new Result();
+		$singleResult->setType('count');
 		$singleResult->setValue(count($result));
 
 		return array($singleResult);

@@ -13,9 +13,12 @@ class Sum extends TrendResult
 	{
 		$result = $this->analysis->analyse();
 
+		$sumTotal = array_sum($result);
+		
 		$singleResult = new Result();
-		$singleResult->setValue(number_format(array_sum($result),2,'.',','));
-
+		$singleResult->setValue($sumTotal);
+		$singleResult->setType('amount');
+		
 		return array($singleResult);
 	}
 }
