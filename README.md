@@ -11,6 +11,8 @@ It is easy scalable because it involves Strategy pattern solution.
 
 I used Symfony 2 framework and MongoDB database, again because of it's scalability.
 
+Frontend credentials:
+
 Usrnm: currencyfair
 
 Passwd: currencyfair
