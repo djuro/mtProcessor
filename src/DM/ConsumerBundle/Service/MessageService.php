@@ -49,22 +49,25 @@ class MessageService
 			->setRate($messageValues['rate'])
 			->setOriginatingCountry($messageValues['originatingCountry']);
 
-			$timePlaced = new DateTime($messageValues['timePlaced']);
+			$timePlaced = $this->createTimePlaced($messageValues['timePlaced']);
 
 			$message->setTimePlaced($timePlaced);
 
 		return $message;
 	}
-
-
-	/**
-	* @param string $timePlaced
-	* @return MongoDate
-	*/
-	private function stringToMongoDate($timePlaced)
-	{
-		$mongoDateTime = new MongoDate(strtotime($timePlaced));
-		return $mongoDateTime;
-	}
+        
+        /**
+         * 
+         * @param string $timePlaced
+         * @return DateTime
+         */
+        private function createTimePlaced($timePlaced)
+        {
+            $dateTime = new DateTime();
+            $timestamp = strtotime($timePlaced);
+            $dateTime->setTimestamp($timestamp);
+            return $dateTime;
+        }
+        
 
 }
