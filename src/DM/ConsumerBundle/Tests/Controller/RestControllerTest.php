@@ -2,6 +2,7 @@
 namespace DMConsumerBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Bundle\FrameworkBundle\Client;
 
 class RestControllerTest extends WebTestCase
 {
@@ -34,6 +35,24 @@ class RestControllerTest extends WebTestCase
                          ); 
         
        $this->assertContains($client->getResponse()->getContent(),$this->responseMessage);
+       
+       $this->removeNewMessage($client);
+    }
+    
+    
+    private function removeNewMessage(Client $client)
+    {
+        $em = $client->getContainer()->get('doctrine_mongodb')->getManager();
         
+        $messageRepository = $em->getRepository('DMConsumerBundle:Message');
+        
+        $messages = $messageRepository->findByUserId('134256');
+        
+        foreach($messages as $message)
+        {
+            $em->remove($message);
+        }
+        
+        $em->flush();
     }
 }

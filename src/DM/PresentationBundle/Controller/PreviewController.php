@@ -2,7 +2,6 @@
 
 namespace DM\PresentationBundle\Controller;
 
-use DM\AnalyticsBundle\Form\Repository\ReportRepository;
 use DM\AnalyticsBundle\Service\TrendStrategy\TrendEnumerator;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -12,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineODMMongoDBAdapter;
 
-use \DateTime;
+use \Exception;
 
 class PreviewController extends Controller
 {
@@ -96,6 +95,25 @@ class PreviewController extends Controller
      */
     public function homeAction()
     {
+        return $this->redirect($this->generateUrl('admin_message_list'));
+    }
+    
+    /**
+     * @Route("/admin/message/delete/{messageId}", name="admin_message_delete")
+     * @Template()
+     */
+    public function deleteMessageAction(Request $request, $messageId)
+    {
+        $em = $this->get('doctrine_mongodb')->getManager();
+        $messageRepository = $em->getRepository('DMConsumerBundle:Message');
+        
+        $message = $messageRepository->find($messageId);
+        
+        if(!$message)
+            throw new Exception (sprintf("No Message found having specified ID: %s",$messageId));
+        
+        $em->remove($message);
+        $em->flush();
         return $this->redirect($this->generateUrl('admin_message_list'));
     }
     

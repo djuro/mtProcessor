@@ -9,13 +9,13 @@
 		<table class="table table-striped">
 		<tr> 
 			<th>User ID</th> <th>Cur. From</th> <th>Cur. To</th> <th>Amount Sell</th> 
-			<th>Amount Buy</th> <th>Rate</th> <th>Time Placed</th> <th>Originating Country</th> 
+			<th>Amount Buy</th> <th>Rate</th> <th>Time Placed</th> <th>Originating Country</th> <th>..</th>
 		</tr>
 		{% for message in messages %}
 		<tr> 
 			<td>{{ message.userId}}</td> <td>{{ message.currencyFrom }}</td> <td>{{ message.currencyTo }}</td> 
 			<td>{{ message.amountSell }}</td> <td>{{ message.amountBuy }}</td> <td>{{ message.rate }}</td> 
-			<td>{{ message.timePlaced|date() }}</td> <td>{{ message.originatingCountry }}</td>
+			<td>{{ message.timePlaced|date() }}</td> <td>{{ message.originatingCountry }}</td><td><a href="{{ path('admin_message_delete',{'messageId':message.id}) }}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
 		</tr>
 		{% endfor %}
 		</table>
