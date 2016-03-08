@@ -3,12 +3,15 @@
 
 
 # mtProcessor
-The application is based on Symfony2 framework.
-My work is mostly in the following bundles: 
+The application is based on Symfony2 framework. It has one Rest endpoint accepting POST requests. The message received contains data about particular money transfer.
+
+The application has been done as a task for CurrencyFair Company.
+
+My work is in the following bundles: 
 
 /src/DM/AnalyticsBundle,
 /src/DM/ConsumerBundle,
-/src/DM/AnalyticsBundle,
+/src/DM/PresentationBundle,
 
 
 Authenticated User have access to messages list, reports list and "New report" form. Report preview is based on it's result data type. It can be numeric or graphic.
