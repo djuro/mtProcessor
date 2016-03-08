@@ -9,9 +9,9 @@ The application has been done as a task for CurrencyFair Company.
 
 My work is in the following bundles: 
 
-/src/DM/AnalyticsBundle,
-/src/DM/ConsumerBundle and 
-/src/DM/PresentationBundle.
+`/src/DM/AnalyticsBundle`,
+`/src/DM/ConsumerBundle` and 
+`/src/DM/PresentationBundle`.
 
 
 Authenticated User have access to messages list, reports list and "New report" form. Report preview is based on it's result data type. It can be numeric or graphic.
