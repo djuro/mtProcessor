@@ -4,7 +4,11 @@
 
 # mtProcessor
 The application is based on Symfony2 framework.
-My work is mostly in the following bundles:
+My work is mostly in the following bundles: 
+
+/src/DM/AnalyticsBundle,
+/src/DM/ConsumerBundle,
+/src/DM/AnalyticsBundle,
 
 
 Authenticated User have access to messages list, reports list and "New report" form. Report preview is based on it's result data type. It can be numeric or graphic.
